@@ -28,7 +28,7 @@ class AlunniController
     $mysqli_connection = new MySQLi('my_mariadb', 'root', 'ciccio', 'scuola');
     $query = "INSERT INTO alunni (nome, cognome) VALUES ('$body->nome', '$body->cognome');";
     $mysqli_connection->query($query) or die ('Unable to execute query. '. mysqli_error($query));
-    return $response->withStatus(200);
+    return $response->withStatus(201);
   }
 
   public function update(Request $request, Response $response, $args){
@@ -37,13 +37,13 @@ class AlunniController
     $mysqli_connection = new MySQLi('my_mariadb', 'root', 'ciccio', 'scuola');
     $query = "UPDATE alunni SET nome = '$body->nome', cognome= '$body->cognome' WHERE id = $id;";
     $mysqli_connection->query($query) or die ('Unable to execute query. '. mysqli_error($query));
-    return $response->withStatus(200);
+    return $response->withStatus(204);
   }
 
   public function destroy(Request $request, Response $response, $args){
     $id = $args['id'];
     $mysqli_connection = new MySQLi('my_mariadb', 'root', 'ciccio', 'scuola');
     $mysqli_connection->query("DELETE FROM alunni WHERE id='$id';") or die ('Unable to execute query. '. mysqli_error($query));
-    return $response->withStatus(200);
+    return $response->withStatus(204);
   }
 }

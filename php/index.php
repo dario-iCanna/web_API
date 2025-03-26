@@ -15,3 +15,4 @@ $app->put('/alunni/{id}', "AlunniController:update");
 $app->delete('/alunni/{id}', "AlunniController:destroy");
 
 $app->run();
+?>
