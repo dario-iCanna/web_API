@@ -7,7 +7,7 @@ class AlunniController
   public function index(Request $request, Response $response, $args){
     $mysqli_connection = new MySQLi('my_mariadb', 'root', 'ciccio', 'scuola');
     $queryParams = $request->getQueryParams();
-    $search = "where nome like '%$queryParams[search]%' or cognome like '%$queryParams[search]%'" ?? "";
+    $search = "where nome regexp '$queryParams[search]' or cognome regexp '$queryParams[search]'" ?? "";
     $sortCol =$queryParams['sortCol'] ?? "id";
     $sort =$queryParams['sort'] ?? "ASC";
     $result = $mysqli_connection->query("SELECT * FROM alunni $search order by $sortCol $sort");
